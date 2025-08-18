@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&family=Funnel+Display:wght@300..800&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&family=Funnel+Display:wght@300..800&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nanum+Myeongjo&family=Oswald:wght@200..700&display=swap');
+
+
+.stylefont {
+  font-family: 'Bilbo Swash Caps', cursive;
+}
+
+.headerstyle {
+  font-family: "Oswald", sans-serif;
+}
+
+.about-page-bg {
+  background-image: url('./assets/main/banner4.webp');
+  background-size: cover;
+}
+
+.backgroundimagechange2 {
+  background-image: url("./assets/home/AdobeStock_385430086-copy_2.png");
+  background-size: cover;
+  background-position-x: center;
+} 
+
+.backgroundimagechange {
+  background-image: url("./assets/main/banner4.webp");
+  background-size: cover;
+  background-position-x: center;
+}
+
+@media (max-width: 768px) {
+  .overflow-x-auto {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+  }
+
+  .flex-shrink-0 {
+    flex-shrink: 0;
+    width: 100%;
+
+  }
+
+  .space-x-4>*+* {
+    margin-left: 1rem;
+    /* Adjust spacing between items */
+  }
+}
+
+.custom-swiper-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  color: #514B60;
+  font-size: 2rem;
+}
+
+.swiper-button-prev.custom-swiper-button {
+  left: 10px;
+}
+
+.swiper-button-next.custom-swiper-button {
+  right: 10px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: none;
+}
+
+:root {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  /* color: #646cff; */
+  text-decoration: inherit;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: #f9f9f9;
+    color: #213547;
+  }
+
+  body {
+    background-color: #ffffff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+    color: #747bff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+}
+
+/* Vibrating call button animation */
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes ring-rotation {
+  0% { transform: rotate(0deg); }
+  5% { transform: rotate(15deg); }
+  10% { transform: rotate(-15deg); }
+  15% { transform: rotate(15deg); }
+  20% { transform: rotate(-15deg); }
+  25% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-call-button {
+  animation: vibrate 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: vibrate 0.5s infinite, pulse 1.5s infinite;
+}
+
+.animate-call-icon {
+  animation: ring-rotation 2s ease infinite;
+  transform-origin: 50% 50%;
+}
+
+/* Pulsing animation with glow effect */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* Navbar spacing class */
+.navbar-spacing {
+  padding-top: 80px; /* Adjust based on your navbar height */
+}
+
+/* For larger screens where navbar might be taller */
+@media (min-width: 768px) {
+  .navbar-spacing {
+    padding-top: 120px;
+  }
+}

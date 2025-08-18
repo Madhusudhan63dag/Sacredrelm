@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sacredrelm.com/sitemap.xml
+
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /billing/
