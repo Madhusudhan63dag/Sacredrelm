@@ -39,15 +39,15 @@ const Review = () => {
 
       // Animate rating (5.0)
       animateCounter(5.0, 0, setCounters, 0.1, 'rating');
-      
-      // Animate customers (1000+)
-      animateCounter(1000, 0, setCounters, 25, 'customers');
+
+      // Animate customers (100000+)
+      animateCounter(100000, 0, setCounters, 1000, 'customers');
       
       // Animate protection (100%)
       animateCounter(100, 0, setCounters, 2, 'protection');
 
-      // Animate visited (5000+)
-      animateCounter(5000, 0, setCounters, 100, 'visited');
+      // Animate visited (1000000+)
+      animateCounter(1000000, 0, setCounters, 100000, 'visited');
     }
   }, [isStatsInView]);
 
@@ -217,7 +217,7 @@ const Review = () => {
           {...motionConfig}
           className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-6 font-serif leading-tight tracking-tight px-2">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold text-black mb-4 sm:mb-6 font-serif leading-tight tracking-tight px-2">
             Thousands trust Karungali for protection and growth 
             <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400">
               don’t miss your chance

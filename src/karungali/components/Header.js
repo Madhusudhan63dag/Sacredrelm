@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import banner1 from '../assets/1.webp';
-import banner2 from '../assets/2.webp';
+
 import banner3 from '../assets/3.webp';
 import Slider from 'react-slick';
 
 
 const Header = () => {
-  const [currentBanner, setCurrentBanner] = useState(0);
-  const banners = [banner1, banner2, banner3];
       const settings = {
         dots: true,
         infinite: true,
@@ -33,9 +31,6 @@ const Header = () => {
                           <Slider {...settings}>
                               <div className="banner-slide">
                                   <img src={banner3} alt="Banner 1" />
-                              </div>
-                              <div className="banner-slide">
-                                  <img src={banner2} alt="Banner 2" />
                               </div>
                               <div className="banner-slide">
                                   <img src={banner1} alt="Banner 3" />

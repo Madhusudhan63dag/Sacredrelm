@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+
 import { motion } from 'framer-motion';
 import product1 from '../assets/product1.webp';
 import product3 from '../assets/productone.webp';
@@ -14,13 +15,18 @@ import product9 from '../assets/product8.webp'
 const Product = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [activeFeature, setActiveFeature] = useState(0);
+  const [isAutoSliding, setIsAutoSliding] = useState(true);
+  const [autoSlideProgress, setAutoSlideProgress] = useState(0);
+  
+  // Auto-slide constants
+  const AUTO_SLIDE_INTERVAL = 1000; // 3 seconds
   
   // Refs for synchronized scrolling
   const imageContainerRef = useRef(null);
   const productSectionRef = useRef(null);
 
   // Product images
-  const productImages = [product5, product6, product7, product8, product9, product1, product3, product4, ];
+  const productImages = [product6, product7, product8, product9, product1, product3, product4, ];
 
   // Sacred features with spiritual benefits
   const sacredFeatures = [
@@ -61,57 +67,85 @@ const Product = () => {
       )
     }
   ];
-
-  // Simplified and fixed synchronized scrolling
   useEffect(() => {
-    const handleScroll = () => {
-      const imageContainer = imageContainerRef.current;
-      const productSection = productSectionRef.current;
-      
-      if (!imageContainer || !productSection) return;
+    if (!isAutoSliding) {
+      setAutoSlideProgress(0);
+      return;
+    }
 
-      // Get the section's position relative to viewport
-      const sectionRect = productSection.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // Only apply scroll effect when section is in view
-      if (sectionRect.top <= viewportHeight && sectionRect.bottom >= 0) {
-        // Calculate how much of the section has been scrolled
-        const sectionTop = sectionRect.top;
-        const sectionHeight = sectionRect.height;
-        
-        // Calculate scroll progress (0 to 1)
-        let scrollProgress = 0;
-        if (sectionTop <= 0) {
-          scrollProgress = Math.min(Math.abs(sectionTop) / (sectionHeight - viewportHeight), 1);
+    const progressInterval = setInterval(() => {
+      setAutoSlideProgress(prev => {
+        const newProgress = prev + 50; // Update every 50ms
+        if (newProgress >= AUTO_SLIDE_INTERVAL) {
+          setSelectedImageIndex(prevIndex => 
+            prevIndex === productImages.length - 1 ? 0 : prevIndex + 1
+          );
+          return 0;
         }
-        
-        // Apply smooth transform
-        const maxTranslate = 200; // Maximum pixels to translate
-        const translateY = scrollProgress * maxTranslate;
-        
-        imageContainer.style.transform = `translateY(-${translateY}px)`;
-      }
-    };
+        return newProgress;
+      });
+    }, 50);
 
-    // Throttle scroll events for better performance
-    let ticking = false;
-    const throttledScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+    return () => clearInterval(progressInterval);
+  }, [isAutoSliding, productImages.length, selectedImageIndex]);
 
-    window.addEventListener('scroll', throttledScroll, { passive: true });
+  // Reset progress when manually changing slides
+  // useEffect(() => {
+  //   if (!isAutoSliding) {
+  //     setAutoSlideProgress(0);
+  //   }
+  // }, [selectedImageIndex, isAutoSliding]);
+
+  // // Simplified and fixed synchronized scrolling
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const imageContainer = imageContainerRef.current;
+  //     const productSection = productSectionRef.current;
+      
+  //     if (!imageContainer || !productSection) return;
+
+  //     // Get the section's position relative to viewport
+  //     const sectionRect = productSection.getBoundingClientRect();
+  //     const viewportHeight = window.innerHeight;
+      
+  //     // Only apply scroll effect when section is in view
+  //     if (sectionRect.top <= viewportHeight && sectionRect.bottom >= 0) {
+  //       // Calculate how much of the section has been scrolled
+  //       const sectionTop = sectionRect.top;
+  //       const sectionHeight = sectionRect.height;
+        
+  //       // Calculate scroll progress (0 to 1)
+  //       let scrollProgress = 0;
+  //       if (sectionTop <= 0) {
+  //         scrollProgress = Math.min(Math.abs(sectionTop) / (sectionHeight - viewportHeight), 1);
+  //       }
+        
+  //       // Apply smooth transform
+  //       const maxTranslate = 200; // Maximum pixels to translate
+  //       const translateY = scrollProgress * maxTranslate;
+        
+  //       imageContainer.style.transform = `translateY(-${translateY}px)`;
+  //     }
+  //   };
+
+  //   // Throttle scroll events for better performance
+  //   let ticking = false;
+  //   const throttledScroll = () => {
+  //     if (!ticking) {
+  //       requestAnimationFrame(() => {
+  //         handleScroll();
+  //         ticking = false;
+  //       });
+  //       ticking = true;
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', throttledScroll, { passive: true });
     
-    return () => {
-      window.removeEventListener('scroll', throttledScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', throttledScroll);
+  //   };
+  // }, []);
 
   return (
     <section ref={productSectionRef} id="product" className="bg-gradient-to-r from-orange-400 via-orange-200 to-yellow-400">
@@ -126,7 +160,7 @@ const Product = () => {
         >
          
 
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 font-serif leading-tight tracking-tight">
+          <h2 className="text-5xl md:text-7xl font-bold text-black mb-8 font-serif leading-tight tracking-tight">
             Karungali Sacred
           </h2>
           
@@ -140,6 +174,7 @@ const Product = () => {
 
         <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
           
+          {/* Left - Image Gallery with Fixed Scroll */}
           {/* Left - Image Gallery with Fixed Scroll */}
           <div className="lg:sticky lg:top-8">
             <motion.div
@@ -159,15 +194,27 @@ const Product = () => {
                 <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-yellow-400/60"></div>
 
                 {/* Main Product Display */}
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-orange-50 to-white shadow-2xl">
+                <div 
+                  className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-orange-50 to-white shadow-2xl group cursor-pointer"
+                  onMouseEnter={() => setIsAutoSliding(false)}
+                  onMouseLeave={() => setIsAutoSliding(true)}
+                >
                   <img 
                     src={productImages[selectedImageIndex]}
                     alt={`Karungali Sacred Collection - View ${selectedImageIndex + 1}`}
-                    className="w-full h-full object-cover transition-all duration-500"
+                    className="w-full h-full object-cover transition-all duration-700 transform group-hover:scale-110"
                   />
                   
                   {/* Subtle overlay for depth */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-black/5 pointer-events-none"></div>
+                  
+                  {/* Auto-slide indicator */}
+                  <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/50 rounded-full px-3 py-2">
+                    <div className={`w-2 h-2 rounded-full transition-colors ${isAutoSliding ? 'bg-green-400' : 'bg-yellow-400'}`}></div>
+                    <span className="text-white text-xs font-medium">
+                      {isAutoSliding ? 'Auto' : 'Manual'}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Professional Navigation */}
@@ -177,8 +224,13 @@ const Product = () => {
                       key={index}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      onClick={() => setSelectedImageIndex(index)}
-                      className={`w-12 h-12 rounded-xl border-2 transition-all duration-300 overflow-hidden relative ${
+                      onClick={() => {
+                        setSelectedImageIndex(index);
+                        setIsAutoSliding(false);
+                        // Resume auto-slide after 3 seconds
+                        setTimeout(() => setIsAutoSliding(true), 3000);
+                      }}
+                      className={`w-12 h-12 rounded-xl border-2 transition-all duration-300 overflow-hidden relative group ${
                         selectedImageIndex === index 
                           ? 'border-orange-400 shadow-lg shadow-orange-400/30' 
                           : 'border-orange-500/30 hover:border-orange-400/60'
@@ -187,10 +239,19 @@ const Product = () => {
                       <img 
                         src={productImages[index]} 
                         alt={`Gallery ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       {selectedImageIndex === index && (
                         <div className="absolute inset-0 bg-orange-400/20"></div>
+                      )}
+                      
+                      {/* Progress indicator for auto-slide */}
+                      {selectedImageIndex === index && isAutoSliding && (
+                        <div className="absolute bottom-0 left-0 h-1 bg-orange-400 rounded-b-lg transition-all duration-300"
+                            style={{
+                              width: `${(autoSlideProgress / AUTO_SLIDE_INTERVAL) * 100}%`
+                            }}>
+                        </div>
                       )}
                     </motion.button>
                   ))}
@@ -198,6 +259,7 @@ const Product = () => {
               </div>
             </motion.div>
           </div>
+
 
           {/* Right - Scrollable Content */}
           <motion.div
@@ -210,11 +272,8 @@ const Product = () => {
             {/* Professional Product Title */}
             <div className="space-y-6">
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-white font-serif leading-tight tracking-tight">
-                  Sacred Power
-                  <span className="block text-2xl md:text-3xl text-orange-900 font-light mt-2 tracking-wide">
-                    of Karungali
-                  </span>
+                <h1 className="text-4xl md:text-5xl font-bold text-black font-serif leading-tight tracking-tight">
+                  Sacred Power of Karungali
                 </h1>
                 
                 <div className="w-16 h-px bg-gradient-to-r from-orange-400 to-transparent"></div>
@@ -275,18 +334,15 @@ const Product = () => {
                 
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <div className="text-5xl font-bold text-yellow-400 tracking-tight">₹1,290</div>
+                    <div className="text-5xl font-bold text-yellow-400 tracking-tight">₹1,490</div>
                     <div className="text-xl text-yellow-100/60 line-through">₹2,999</div>
-                    <div className="inline-block px-6 py-2 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-full text-sm font-bold tracking-wide">
-                      SAVE ₹1,709 (57% OFF)
-                    </div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-3 border-b border-orange-400/20">
                     <span className="text-yellow-100/80">Authentic Karungali Mala & Bracelet</span>
-                    <span className="font-semibold text-yellow-200">₹1,290</span>
+                    <span className="font-semibold text-yellow-200">₹1,490</span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-orange-400/20">
                     <span className="text-yellow-100/80">Premium Packaging</span>
@@ -301,7 +357,7 @@ const Product = () => {
                 {/* Professional Action Buttons */}
                 <div className="space-y-4">
                   <motion.a
-                    href="/checkout?price=1290"
+                    href="/checkout?price=1490"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="block w-full bg-gradient-to-r from-orange-600 via-orange-500 to-yellow-400 text-black font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all text-lg text-center tracking-wide"
