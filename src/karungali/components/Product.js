@@ -89,64 +89,6 @@ const Product = () => {
     return () => clearInterval(progressInterval);
   }, [isAutoSliding, productImages.length, selectedImageIndex]);
 
-  // Reset progress when manually changing slides
-  // useEffect(() => {
-  //   if (!isAutoSliding) {
-  //     setAutoSlideProgress(0);
-  //   }
-  // }, [selectedImageIndex, isAutoSliding]);
-
-  // // Simplified and fixed synchronized scrolling
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const imageContainer = imageContainerRef.current;
-  //     const productSection = productSectionRef.current;
-      
-  //     if (!imageContainer || !productSection) return;
-
-  //     // Get the section's position relative to viewport
-  //     const sectionRect = productSection.getBoundingClientRect();
-  //     const viewportHeight = window.innerHeight;
-      
-  //     // Only apply scroll effect when section is in view
-  //     if (sectionRect.top <= viewportHeight && sectionRect.bottom >= 0) {
-  //       // Calculate how much of the section has been scrolled
-  //       const sectionTop = sectionRect.top;
-  //       const sectionHeight = sectionRect.height;
-        
-  //       // Calculate scroll progress (0 to 1)
-  //       let scrollProgress = 0;
-  //       if (sectionTop <= 0) {
-  //         scrollProgress = Math.min(Math.abs(sectionTop) / (sectionHeight - viewportHeight), 1);
-  //       }
-        
-  //       // Apply smooth transform
-  //       const maxTranslate = 200; // Maximum pixels to translate
-  //       const translateY = scrollProgress * maxTranslate;
-        
-  //       imageContainer.style.transform = `translateY(-${translateY}px)`;
-  //     }
-  //   };
-
-  //   // Throttle scroll events for better performance
-  //   let ticking = false;
-  //   const throttledScroll = () => {
-  //     if (!ticking) {
-  //       requestAnimationFrame(() => {
-  //         handleScroll();
-  //         ticking = false;
-  //       });
-  //       ticking = true;
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', throttledScroll, { passive: true });
-    
-  //   return () => {
-  //     window.removeEventListener('scroll', throttledScroll);
-  //   };
-  // }, []);
-
   return (
     <section ref={productSectionRef} id="product" className="bg-gradient-to-r from-orange-400 via-orange-200 to-yellow-400">
       <div className=" px-6">
@@ -160,7 +102,7 @@ const Product = () => {
         >
          
 
-          <h2 className="text-5xl md:text-7xl font-bold text-black mb-8 font-serif leading-tight tracking-tight">
+          <h2 className="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
             Karungali Sacred
           </h2>
           
@@ -271,8 +213,8 @@ const Product = () => {
             
             {/* Professional Product Title */}
             <div className="space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-black font-serif leading-tight tracking-tight">
+              <div className="">
+                <h1 className="text-4xl md:text-5xl font-bold text-black leading-tight tracking-tight">
                   Sacred Power of Karungali
                 </h1>
                 
@@ -284,7 +226,7 @@ const Product = () => {
               </div>
 
               {/* Professional Rating Display */}
-              <div className="flex items-center justify-between py-6 px-8 bg-gradient-to-r from-orange-900/50 via-red-800/30 to-orange-900/50 rounded-xl border border-orange-400/20 backdrop-blur-sm">
+              <div className="flex items-center justify-between py-1 px-1 bg-gradient-to-r from-orange-900/50 via-red-800/30 to-orange-900/50 rounded-xl border border-orange-400/20 backdrop-blur-sm">
                 <div className="flex items-center gap-4">
                   <div className="flex text-yellow-400 text-lg">
                     {[...Array(5)].map((_, i) => (
@@ -298,38 +240,8 @@ const Product = () => {
               </div>
             </div>
 
-            {/* Professional Features */}
-            {/* <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-orange-300 font-serif">Sacred Benefits</h3>
-              
-              <div className="grid gap-4">
-                {sacredFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.02 }}
-                    onHoverStart={() => setActiveFeature(index)}
-                    className={`p-5 rounded-xl border transition-all duration-300 cursor-pointer ${
-                      activeFeature === index
-                        ? 'bg-gradient-to-r from-orange-500/10 via-yellow-500/5 to-transparent border-orange-400/50 shadow-lg'
-                        : 'bg-gradient-to-r from-orange-900/30 via-red-800/20 to-orange-900/30 border-orange-400/20 hover:border-orange-400/40'
-                    }`}
-                  >
-                    <div className="flex items-center gap-5">
-                      {feature.icon}
-                      <div className="flex-1">
-                        <h4 className="text-yellow-200 font-semibold text-lg mb-2">{feature.title}</h4>
-                        <p className="text-yellow-100/70 leading-relaxed">{feature.description}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div> */}
-
-            
-
             {/* Professional Pricing */}
-            <div className="bg-gradient-to-br from-orange-900/80 via-red-800/60 to-orange-900/80 border border-orange-400/30 rounded-2xl p-8 backdrop-blur-sm">
+            <div className="bg-gradient-to-br from-orange-900/80 via-red-800/60 to-orange-900/80 border border-orange-400/30 rounded-2xl p-1 backdrop-blur-sm">
               <div className="space-y-8">
                 
                 <div className="text-center space-y-4">
@@ -374,7 +286,7 @@ const Product = () => {
         <div className='px-10'>
           {/* Extended Content for Scrolling */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-orange-900 font-serif">Sacred Heritage</h3>
+              <h3 className="text-2xl font-bold text-orange-900 ">Sacred Heritage</h3>
               <div className="space-y-4 text-yellow-800 leading-relaxed">
                 <p>
                   Karungali, known as sacred ebony wood, has been revered in ancient Indian traditions for millennia. 
@@ -389,7 +301,7 @@ const Product = () => {
             </div>
 
             <div className="space-y-6 mt-5">
-              <h3 className="text-2xl font-bold text-orange-900 font-serif">Spiritual Significance</h3>
+              <h3 className="text-2xl font-bold text-orange-900 ">Spiritual Significance</h3>
               <div className="space-y-4 text-yellow-800 leading-relaxed">
                 <p>
                   In Vedic traditions, Karungali is considered one of the most powerful protective materials. 
@@ -403,7 +315,7 @@ const Product = () => {
             </div>
 
             <div className="space-y-6 mt-5">
-              <h3 className="text-2xl font-bold text-orange-900 font-serif">How to Use</h3>
+              <h3 className="text-2xl font-bold text-orange-900 ">How to Use</h3>
               <div className="space-y-4 text-yellow-800 leading-relaxed">
                 <p>
                   Wear your Karungali mala during meditation, prayer, or daily activities for continuous protection. 
@@ -417,7 +329,7 @@ const Product = () => {
             </div>
 
             <div className="space-y-6 mt-5">
-              <h3 className="text-2xl font-bold text-orange-900 font-serif">Care Instructions</h3>
+              <h3 className="text-2xl font-bold text-orange-900 ">Care Instructions</h3>
               <div className="space-y-4 text-yellow-800 leading-relaxed">
                 <p>
                   Keep your Karungali mala in a clean, sacred space when not in use. Avoid exposure to harsh chemicals 
