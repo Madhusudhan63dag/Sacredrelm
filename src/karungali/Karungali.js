@@ -1,6 +1,5 @@
 import './App.css';
 import About from './components/About';
-import Contact from './components/Contact';
 import FAQ from './components/Faq';
 import Header from './components/Header';
 import Product from './components/Product';
@@ -13,6 +12,7 @@ function Karungali() {
       <Header />
       <About />
       <Product />
+      
       <FAQ />
       <Review />
     </div>
