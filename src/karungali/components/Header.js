@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import banner1 from '../assets/1.webp';
-
+import banner2 from '../assets/2.webp'; 
 import banner3 from '../assets/3.webp';
+
+import banner5 from '../assets/5.webp';
 import Slider from 'react-slick';
 
 
@@ -33,7 +35,13 @@ const Header = () => {
                                   <img src={banner3} alt="Banner 1" />
                               </div>
                               <div className="banner-slide">
+                                  <img src={banner2} alt="Banner 2" />
+                              </div>
+                              <div className="banner-slide">
                                   <img src={banner1} alt="Banner 3" />
+                              </div>
+                              <div className="banner-slide">
+                                  <img src={banner5} alt="Banner 3" />
                               </div>
                           </Slider>
                       </div>            

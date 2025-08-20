@@ -1590,7 +1590,7 @@ const Checkout = ({ currentLang }) => {
                         
                         return (
                             <div key={index} className="flex items-start border-b border-gray-200 py-4">
-                                <div className="h-full md:h-16 w-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden mr-4">
+                                {/* <div className="h-full md:h-16 w-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden mr-4">
                                     <img 
                                         src={productImage} 
                                         alt={product.name}
@@ -1600,7 +1600,7 @@ const Checkout = ({ currentLang }) => {
                                             e.target.src = defaultProductImage;
                                         }}
                                     />
-                                </div>
+                                </div> */}
                                 <div className="flex-1">
                                     <div className="flex justify-between items-start">
                                         <div>
@@ -1650,7 +1650,7 @@ const Checkout = ({ currentLang }) => {
                         <div className="space-y-3">
                             {getFreeProducts().map((item, idx) => (
                                 <div key={idx} className="flex flex-col md:flex-row items-center bg-white p-3 rounded-md border border-orange-200 shadow-sm hover:shadow-md transition-all duration-300">
-                                    <div className="h-48 md:h-14 w-14 flex-shrink-0 rounded overflow-hidden mr-3">
+                                    {/* <div className="h-48 md:h-14 w-14 flex-shrink-0 rounded overflow-hidden mr-3">
                                         <img 
                                             src={item.image} 
                                             alt={item.name} 
@@ -1660,7 +1660,7 @@ const Checkout = ({ currentLang }) => {
                                                 e.target.src = defaultProductImage;
                                             }}
                                         />
-                                    </div>
+                                    </div> */}
                                     <div>
                                         <p className="font-medium text-gray-800">{item.name}</p>
                                         <p className="text-xs text-gray-500">{item.description || "Premium gift with your purchase"}</p>

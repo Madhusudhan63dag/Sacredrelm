@@ -118,7 +118,11 @@ import product95 from '../assets/main/product/58.webp';
 import product96 from '../assets/main/product/59.webp';
 import product97 from '../assets/main/product/60.webp';
 import product98 from '../assets/main/product/68.webp';
-import product99 from '../assets/main/product/69.webp';
+import product99 from '../karungali/assets/product1.webp';
+import product100 from '../karungali/assets/product6.webp';
+import product101 from '../karungali/assets/product3.webp';
+import product102 from '../karungali/assets/product4.webp';
+import product103 from '../karungali/assets/product5.webp';
 
 
 
@@ -133,6 +137,14 @@ const translations = {
             {
                 title: 'Shop',
                 url: '/shop',
+            },
+            {
+                title: 'Karungali',
+                url: '/karungali',
+            },
+            {
+                title: 'Astrology',
+                url: '/astro',
             },
             {
                 title: 'About',
@@ -306,13 +318,15 @@ const translations = {
             title: "Contact Info",
             address: "Hyderabad, Telangana 500016",
             email: "customercareproductcenter@gmail.com",
-            phone: "+91 939 227 7389"
+            phone: "+91 9059 821 555"
         },
         usefulLinks: {
             title: "Useful Links",
             links: [
                 { name: "Home", url: "/" },
                 { name: "Store", url: "/shop" },
+                { name: "Karungali", url: "/karungali" },
+                { name: "Astrology", url: "/astro" },
                 { name: "About", url: "/about" },
                 { name: "Help", url: "/contact" },
             ]
@@ -367,7 +381,7 @@ const translations = {
             title: "Our Branches",
             sub: "Et odio pellentesque diam volutpat. Adipiscing diam donec adipiscing tristique risus. Turpis massa sed elementum tempus egestas sed.",
             branches: [
-                { title: 'India', address: 'Hyderabad, Telangana', phone: '+91 939 227 7389' },
+                { title: 'India', address: 'Hyderabad, Telangana', phone: '+91 9059 821 555' },
             ]
         },
         submit: {
@@ -410,7 +424,7 @@ const translations = {
             {
                 id: 1,
                 category: 'Spiritual Accessories',
-                cost: 890, // discounted combo price
+                cost: 1490, // discounted combo price
                 rating: 4.9,
                 isNew: true,
                 name: 'Sacred Karungali Twin Blessings Set',
@@ -419,7 +433,11 @@ const translations = {
                 online: true,
                 photo: { 
                     image1: product98,
-                    // image2: product99,
+                    image2: product99,
+                    image3: product100,
+                    image4: product101,
+                    image5: product102,
+                    image6: product103
                 },
                 description: `This exclusive combo brings together the **Sacred Karungali Mala** and **Karungali Bracelet** – a powerful spiritual pair that protects from negativity, brings prosperity, and enhances your spiritual aura. Perfect for those seeking both meditative focus and everyday protection.`,
                 reviews: [

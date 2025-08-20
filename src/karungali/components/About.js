@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import about from '../assets/product4.webp';
 import product from '../assets/proof.webp';
+import video from '../assets/video.mp4'; // Assuming you have a video file
 
 const About = () => {
   const sealRef = useRef(null);
@@ -66,7 +67,7 @@ const About = () => {
                 </p>
                 <ul className="space-y-2">
                   <li>
-                    • Every moment without Karungali leaves you exposed to
+                    • Every moment without Karungali, leaves you exposed to
                     unseen negative forces.
                   </li>
                   <li>
@@ -137,16 +138,15 @@ const About = () => {
         </div>
 
         {/* Banner Section */}
-        <div className="relative w-full h-64 sm:h-80 md:h-[28rem] lg:h-[32rem] rounded-xl overflow-hidden shadow-lg">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/6PMUFp71RDg?rel=0&amp;autoplay=0&amp;mute=0&amp;controls=1"
-            title="Sacred Collection Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
+        <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
+          <video
+            className="w-full h-full object-cover"
+            src={video}
+            controls
+            autoPlay
           />
         </div>
+
       </div>
     </section>
   );

@@ -345,46 +345,6 @@ const Review = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Sacred CTA Section - Mobile Optimized */}
-        <motion.div
-          {...motionConfig}
-          className="text-center bg-gradient-to-br from-orange-900/60 via-red-800/40 to-orange-900/60 border border-orange-500/30 rounded-xl sm:rounded-2xl p-4 sm:p-8 backdrop-blur-sm relative overflow-hidden mx-2"
-        >
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-orange-500/5"></div> */}
-          
-          <div className="relative space-y-4 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
-              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-              <span className="text-orange-300 text-xs sm:text-sm font-medium tracking-widest uppercase">Join the Sacred Circle</span>
-              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-            </div>
-            
-            <h3 className="text-xl sm:text-3xl md:text-4xl font-bold text-white font-serif mb-3 sm:mb-4 tracking-tight px-2">
-              Begin Your Sacred Journey
-            </h3>
-            
-            <div className="w-12 sm:w-20 h-px bg-gradient-to-r from-transparent via-orange-400 to-transparent mx-auto mb-4 sm:mb-6"></div>
-            
-            <p className="text-yellow-100/80 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
-              Experience the same divine protection and spiritual transformation that thousands of blessed souls celebrate daily
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <motion.a
-                href="/checkout"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group bg-transparent border-2 border-orange-400/60 text-orange-300 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-full hover:bg-orange-400/10 hover:border-orange-400 transition-all inline-flex items-center justify-center gap-2 text-sm sm:text-base tracking-wide"
-              >
-                <span>Order Sacred Protection</span>
-                <svg className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Enhanced global styles for continuous scrolling */}

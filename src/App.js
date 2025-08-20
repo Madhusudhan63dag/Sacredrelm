@@ -14,6 +14,7 @@ import Cancellation from './pages/Cancellation';
 import Checkouts from './pages/Checkouts';
 import Landing from './pages/Landing';
 import ThankYou from './pages/ThankYou';
+import RouteContainer from '../src/astro/App'
 import Aly from './pages/Aly';
 import Karungali from './karungali/Karungali'
 import { CartProvider } from './components/CartContext';
@@ -33,85 +34,6 @@ AOS.init({
   easing: 'ease',
 });
 
-// WhatsApp floating component with bouncing animation
-const WhatsAppFloating = () => {
-  return (
-    <>
-      {/* CSS for bounce animation */}
-      <style jsx>{`
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-15px);
-          }
-        }
-        
-        .whatsapp-float {
-          position: fixed;
-          bottom: 24px;
-          right: 24px;
-          width: 60px;
-          height: 60px;
-          z-index: 1000;
-          animation: bounce 2s infinite;
-          cursor: pointer;
-          background: linear-gradient(135deg, #25D366, #20B358);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-          transition: all 0.3s ease;
-          border: none;
-          outline: none;
-        }
-        
-        .whatsapp-float:hover {
-          transform: scale(1.1);
-          box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
-        }
-        
-        .whatsapp-float:active {
-          transform: scale(0.95);
-        }
-        
-        .whatsapp-icon {
-          font-size: 32px;
-          color: white;
-          text-decoration: none;
-        }
-        
-        @media (max-width: 768px) {
-          .whatsapp-float {
-            width: 56px;
-            height: 56px;
-            bottom: 20px;
-            right: 20px;
-          }
-          
-          .whatsapp-icon {
-            font-size: 28px;
-          }
-        }
-      `}</style>
-      
-      <a
-        href="https://wa.me/919059821555?text=Hi! I'm interested in your Karungali products"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="whatsapp-float"
-        title="Chat with us on WhatsApp"
-        aria-label="Contact us on WhatsApp"
-      >
-        <span className="whatsapp-icon">
-          📱
-        </span>
-      </a>
-    </>
-  );
-};
 
 // Alternative WhatsApp component with SVG icon
 const WhatsAppFloatingWithSVG = () => {
@@ -325,7 +247,14 @@ function App() {
                     <ErrorBoundary><Store /></ErrorBoundary>
                   </Layout>
                 } />
-                
+                <Route path="/*" element={
+                  <>
+                    <ErrorBoundary><RouteContainer /></ErrorBoundary>
+                  </>
+                } />
+
+
+
                 {/* Legacy route redirects for SEO */}
                 <Route path="/product" element={<Navigate to="/shop" replace />} />
               </Routes>

@@ -155,7 +155,7 @@ const ThankYou = () => {
               Return to Home
             </Link>
               <a 
-              href="tel:+919392277389" 
+              href="tel:+919059821555" 
               className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,7 +167,7 @@ const ThankYou = () => {
           
           <div className="mt-12 border-t border-gray-200 pt-6 text-center">
             <p className="text-gray-600 text-sm">
-              Have questions about your order? Contact our customer support at <a href="tel:+919392277389" className="text-blue-600 font-medium">+91 9392277389</a>
+              Have questions about your order? Contact our customer support at <a href="tel:+919059821555" className="text-blue-600 font-medium">+91 90598 21555</a>
             </p>
           </div>
           

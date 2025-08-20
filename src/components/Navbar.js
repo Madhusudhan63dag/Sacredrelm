@@ -9,8 +9,7 @@ import icons2 from '../assets/main/icon2.webp';
 import icons3 from '../assets/main/icon3.webp';
 import icons4 from '../assets/main/icon4.webp';
 import icons5 from '../assets/main/icon5.webp';
-
-
+import icons6 from '../assets/main/icon6.webp';
 
 const Navbar = () => {
   const { cart, removeFromCart, isCartOpen, setIsCartOpen } = useCart();
@@ -182,15 +181,21 @@ const Navbar = () => {
                 </Link>
               </div>
               <div className='flex items-center justify-center flex-col'>
-                <Link to="/about" className="nav-link flex items-center justify-center flex-row font-medium text-gray-800 hover:text-[#DA9687] transition-all duration-300 relative after:absolute after:bottom-[-6px] after:left-0 after:h-[2px] after:w-0 after:bg-[#DA9687] after:transition-all hover:after:w-full">
-                <img src={icons3} alt="Icons" className="h-8 w-8" />
-                  About
-                </Link>
-              </div>
-              <div className='flex items-center justify-center flex-col'>
                 <Link to="/karungali" className="nav-link font-medium flex items-center justify-center flex-row text-gray-800 hover:text-[#DA9687] transition-all duration-300 relative after:absolute after:bottom-[-6px] after:left-0 after:h-[2px] after:w-0 after:bg-[#DA9687] after:transition-all hover:after:w-full">
                 <img src={icons5} alt="Icons" className="h-8 w-8" />
                   Karungali
+                </Link>
+              </div>
+              <div className='flex items-center justify-center flex-col'>
+                <Link to="/astro" className="nav-link font-medium flex items-center justify-center flex-row text-gray-800 hover:text-[#DA9687] transition-all duration-300 relative after:absolute after:bottom-[-6px] after:left-0 after:h-[2px] after:w-0 after:bg-[#DA9687] after:transition-all hover:after:w-full">
+                <img src={icons6} alt="Icons" className="h-8 w-8" />
+                  Astrology
+                </Link>
+              </div>
+              <div className='flex items-center justify-center flex-col'>
+                <Link to="/about" className="nav-link flex items-center justify-center flex-row font-medium text-gray-800 hover:text-[#DA9687] transition-all duration-300 relative after:absolute after:bottom-[-6px] after:left-0 after:h-[2px] after:w-0 after:bg-[#DA9687] after:transition-all hover:after:w-full">
+                <img src={icons3} alt="Icons" className="h-8 w-8" />
+                  About
                 </Link>
               </div>
               <div className='flex items-center justify-center flex-col'>
@@ -291,6 +296,13 @@ const Navbar = () => {
             >
               <img src={icons5} alt="Icons" className="h-8 w-8" />
               Karungali
+            </Link>
+            <Link to="/astro" 
+              className="block text-lg font-medium flex gap-5 hover:text-[#DA9687] hover:translate-x-2 transition-all duration-300 py-2 border-b border-gray-100"
+              onClick={toggleMobileMenu}
+            >
+              <img src={icons6} alt="Icons" className="h-8 w-8" />
+              Astrology
             </Link>
             <Link to="/contact" 
               className="block text-lg font-medium flex gap-5 hover:text-[#DA9687] hover:translate-x-2 transition-all duration-300 py-2 border-b border-gray-100"

@@ -179,8 +179,8 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h4 className="font-medium">Phone</h4>
-                                    <a href="tel:+919392277389" className="text-sm text-gray-600 hover:text-[#D88E7D]">
-                                        +91 939 227 7389
+                                    <a href="tel:+919059821555" className="text-sm text-gray-600 hover:text-[#D88E7D]">
+                                        +91 90598 21555
                                     </a>
                                 </div>
                             </div>
