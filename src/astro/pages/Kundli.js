@@ -97,10 +97,21 @@ const Kundli = () => {
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    if (name === 'phone') {
+      // Only allow numbers and limit to 10 digits
+      const numericValue = value.replace(/[^0-9]/g, '');
+      const truncatedValue = numericValue.slice(0, 10);
+      setFormData(prev => ({
+        ...prev,
+        [name]: truncatedValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
 
@@ -592,8 +603,11 @@ const Kundli = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder={t('phone_placeholder') || "+91 9876543210"}
+                  placeholder={t('phone_placeholder') || "Enter 10 digit number"}
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border-2 border-cyan-500/30 text-white placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-cyan-500/20 focus:border-cyan-400 transition-all duration-300 text-base sm:text-lg"
+                  pattern="[0-9]{10}"
+                  maxLength={10}
+                  inputMode="numeric"
                   required
                 />
               </div>
@@ -868,27 +882,26 @@ const Kundli = () => {
                   <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
                     <span className="text-xl sm:text-2xl text-slate-500 line-through">₹1,299</span>
                     <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">₹599</span>
-                    <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs sm:text-sm font-bold">54% {t('off_label') || 'OFF'}</span>
                   </div>
                 </div>
 
                 <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3">{t('summary_of_details') || 'Summary of Your Details'}:</h4>
+                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3">{t('summary_of_details') || 'Summary of Your Details'}</h4>
                   <div className="space-y-2 text-xs sm:text-sm">
                     <div className="flex justify-between items-start">
-                      <span className="text-slate-400">{t('name_label') || 'Name'}:</span>
+                      <span className="text-slate-400">{t('name_label') || 'Name'}</span>
                       <span className="text-white font-medium text-right ml-2">{formData.name}</span>
                     </div>
                     <div className="flex justify-between items-start">
-                      <span className="text-slate-400">{t('birth_date_label') || 'Birth Date'}:</span>
+                      <span className="text-slate-400">{t('birth_date_label') || 'Birth Date'}</span>
                       <span className="text-white font-medium text-right ml-2">{formData.dateOfBirth}</span>
                     </div>
                     <div className="flex justify-between items-start">
-                      <span className="text-slate-400">{t('birth_time_label') || 'Birth Time'}:</span>
+                      <span className="text-slate-400">{t('birth_time_label') || 'Birth Time'}</span>
                       <span className="text-white font-medium text-right ml-2">{formData.timeOfBirth}</span>
                     </div>
                     <div className="flex justify-between items-start">
-                      <span className="text-slate-400">{t('birth_place_label') || 'Birth Place'}:</span>
+                      <span className="text-slate-400">{t('birth_place_label') || 'Birth Place'}</span>
                       <span className="text-white font-medium text-right ml-2 break-words">{formData.placeOfBirth}</span>
                     </div>
                   </div>
@@ -910,7 +923,7 @@ const Kundli = () => {
                       <span className="text-sm sm:text-base">{t('preparing_analysis') || 'Preparing Analysis...'}</span>
                     </span>
                   ) : (
-                    <span className="text-sm sm:text-base">{t('complete_payment_get_report') || '🚀 Complete Payment & Get Report - ₹599'}</span>
+                    <span className="text-sm sm:text-base">{t('complete_payment_get_report') || 'Complete Payment & Get Report'}</span>
                   )}
                 </button>
               </div>

@@ -5,10 +5,29 @@ import { getRawPrice, getFormattedPrice, PRICE_KEYS } from '../../config/prices'
 
 const API_URL = API_CONFIG.API_URL;
 
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
+
 const MatchHoroscope = () => {
   const { t } = useTranslation();
   const BC_PRICE_NUMBER = getRawPrice(PRICE_KEYS.matchHoroscope);
   const BC_PRICE_FORMATTED = getFormattedPrice(PRICE_KEYS.matchHoroscope);
+  const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
+
+  // Load Razorpay script on component mount
+  useEffect(() => {
+    loadRazorpayScript().then((loaded) => {
+      setIsRazorpayLoaded(loaded);
+    });
+  }, []);
+
   const [formData, setFormData] = useState({
     // Partner 1 (Male/Primary)
     partner1: {
@@ -17,7 +36,7 @@ const MatchHoroscope = () => {
       dateOfBirth: '',
       timeOfBirth: '',
       placeOfBirth: ''
-    },
+    },  
     // Partner 2 (Female/Secondary)
     partner2: {
       name: '',
@@ -406,7 +425,12 @@ const MatchHoroscope = () => {
         throw new Error('Failed to create payment order');
       }
 
-      // Step 2: Initialize Razorpay payment
+      // Step 2: Check if Razorpay is loaded
+      if (!window.Razorpay) {
+        throw new Error('Razorpay SDK failed to load');
+      }
+
+      // Step 3: Initialize Razorpay payment
       const options = {
         key: orderData.key,
         amount: orderData.order.amount,

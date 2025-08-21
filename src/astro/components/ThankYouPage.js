@@ -16,7 +16,7 @@ const ThankYouPage = ({
 
   const handleBackToHome = () => {
     if (onClose) onClose();
-    navigate('/');
+    navigate('/astro');
   };
 
   return (

@@ -366,11 +366,33 @@ const DashaPhalAnalysis = () => {
       updateTimeInForm(tobHour, tobMinute, tobMeridiem);
     }
 
+    // Check each required field and scroll to the first empty one
+    const requiredFields = [
+      { name: 'name', selector: 'input[name="name"]' },
+      { name: 'email', selector: 'input[name="email"]' },
+      { name: 'phone', selector: 'input[name="phone"]' },
+      { name: 'dateOfBirth', selector: 'input[placeholder="DD"]' },
+      { name: 'timeOfBirth', selector: 'input[placeholder="HH"]' },
+      { name: 'placeOfBirth', selector: 'input[name="placeOfBirth"]' }
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field.name]) {
+        const element = document.querySelector(field.selector);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          element.focus();
+          setError(t('please_fill_required_fields') || 'Please fill in all required fields.');
+          return;
+        }
+      }
+    }
+    
     if (!formData.name || !formData.email || !formData.phone || 
         !formData.dateOfBirth || !formData.timeOfBirth || !formData.placeOfBirth) {
       setError(t('please_fill_required_fields') || 'Please fill in all required fields.');
       return;
-    }
+    } 
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
